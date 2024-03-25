@@ -196,7 +196,7 @@ export default function CartPage() {
                                     </thead>
                                     <tbody>
                                     {products.map(product => (
-                                        <tr>
+                                        <tr key = {product._id}>
                                             <ProductInfoCell>
                                                 <ProductImageBox>
                                                     <img src={product.images[0]} alt=""/>
@@ -232,7 +232,7 @@ export default function CartPage() {
                                     </tbody>
                                 </Table>
                             )}
-                            <Coupon>Get 20% off on first purchase with 'Welcome20' coupon</Coupon>
+                            <Coupon>Get 20% off on first purchase with &apos;Welcome20&apos; coupon</Coupon>
                         </Box>
                     </RevealWrapper>
                     {!!cartProducts?.length && (
