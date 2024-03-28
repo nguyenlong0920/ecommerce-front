@@ -1,7 +1,6 @@
 import axios from "axios";
 import styled from "styled-components";
 import WhiteBox from "@/components/WhiteBox";
-import {RevealWrapper} from "next-reveal";
 import Tabs from "@/components/Tabs";
 import Input from "@/components/Input";
 import Header from "@/components/Header";
@@ -10,6 +9,7 @@ import Button from "@/components/Button";
 import Spinner from "@/components/Spinner";
 import ProductBox from "@/components/ProductBox";
 import SingleOrder from "@/components/SingleOrder";
+import {RevealWrapper} from "next-reveal";
 import {useEffect, useState} from "react";
 import {signIn, signOut, useSession} from "next-auth/react";
 
@@ -20,6 +20,9 @@ const ColsWrapper = styled.div`
   margin: 40px 0;
   p {
     margin: 5px;
+  }
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -121,6 +124,8 @@ export default function AccountPage() {
                                                 {orders.length > 0 && orders
                                                     // Sort orders by createdAt, most recent first
                                                     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                                                    // Limit to the first 10 orders
+                                                    .slice(0, 10)
                                                     .map(o => (
                                                         <SingleOrder key={o._id} {...o} />
                                                     ))
@@ -199,7 +204,7 @@ export default function AccountPage() {
                                 )}
                             </WhiteBox>
                         </RevealWrapper>
-                    </div>
+                    </div>                    
                 </ColsWrapper>
             </Center>
         </>

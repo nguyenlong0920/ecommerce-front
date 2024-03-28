@@ -1,11 +1,11 @@
 import axios from "axios";
 import styled from "styled-components";
-import {Product} from "@/models/Product";
-import {Category} from "@/models/Category";
 import Header from "@/components/Header";
 import Center from "@/components/Center";
 import Spinner from "@/components/Spinner";
 import ProductsGrid from "@/components/ProductsGrid";
+import {Product} from "@/models/Product";
+import {Category} from "@/models/Category";
 import {useEffect, useState} from "react";
 
 const CategoryHeader = styled.div`
@@ -15,11 +15,19 @@ const CategoryHeader = styled.div`
   h1{
     font-size: 1.5em;
   }
+  @media (max-width: 600px) {
+    display: block;
+  }
 `;
 
 const FiltersWrapper = styled.div`
   display: flex;
   gap: 15px;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 20px;
+  }
 `;
 
 const Filter = styled.div`
